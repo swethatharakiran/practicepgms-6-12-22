@@ -14,95 +14,58 @@ function getpost(){
     },1000);
 }
 
-function createpost(post){
-    return new Promise((resolve,reject)=>{
+    function createpost(post){
+        return new Promise((resolve,reject)=>{
         setTimeout(()=>{
             posts.push(post);
             const error=false;
             if (!error)
             {
-                resolve();
+                resolve('pushed');
                 
             }
             else{
                 reject('error:something went wrong');
             }
-        },2000);
+        },1000);
     });
-}
-
-function deletepost(){
-
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            
-            //const error=false;
-            if (posts.length>0)
-            {
-               
-                resolve(posts.pop());
-                
-            }
-            else if (posts.length==0){
-                reject("No more posts to delete");
-                console.log(posts.length);
-            }
-        },1000)
-    })
-}
-
-createpost({title:'post three',body:'This is post three'})
-.then(()=>{
-getpost();
-deletepost().then(()=>{
-    getpost();
-    deletepost().then(()=>{
-        getpost();
-        deletepost().then(()=>{
-            getpost();
-            deletepost().then(getpost).catch(err=>console.log(err));
-        }).catch(err=>console.log(err));
-    }).catch(err=>console.log(err));
-}).catch(err=>console.log(err));
-}).catch(err=>console.log(err));
-getpost();
-createpost({title:'post four',body:'This is post four'}).then(()=>{
-    getpost();
-    setTimeout(()=>{
-     deletepost().then(getpost);
-    },1000)
     
- });
- 
-//promise.all
-var p1=Promise.resolve("hello world");
-var p2=10;
-var p3=new Promise((resolve,reject)=>{
-setTimeout(resolve,2000,"good bye");
-});
-Promise.all([p1,p2,p3]).then(values=>console.log(values));
+     }
 
-var t;
-function updatelastuseravtivitytime(){
-    return new Promise((resolve)=>{
-         t=new Date();
-        resolve(t);
-        
-    });
-}
-createpost({title:'post 5', body:'This is post 5'}).then(()=>{
+     function deletepost(){
+         return new Promise((resolve,reject)=>{
     setTimeout(()=>{
-        updatelastuseravtivitytime().then(()=>{
-            posts.forEach(p=>{console.log(p)});
+            
+        //const error=false;
+        if (posts.length>0)
+        {
+           
+            resolve(posts.pop());
+            
+        }
+        else if (posts.length==0){
+            reject("No more posts to delete");
+            //console.log(posts.length);
+        }
+    },2000);
 
-            console.log(t);
-    },1000)
-    });
 });
+     }
 
-//var pp1=Promise.resolve(createpost({title:'post 6',body:'This is post 6'}));
-//var pp2=Promise.resolve(setTimeout(updatelastuseravtivitytime),1000);
-//Promise.all([pp1,pp2]).then(()=>{
-//    console.log(posts);
-//    console.log(t);
-//})
+     getpost();
+     const f1=async()=>{
+
+        const a=await createpost({title:'post 3',body:'This is post 3'});
+        //console.log(a);
+        getpost();
+        const b=await deletepost();
+        //console.log(b);
+        getpost();
+        createpost({title:'post 5', body:'This is post 5'});
+        
+     }
+
+ f1().then(getpost);
+
+
+
