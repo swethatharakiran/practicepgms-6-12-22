@@ -12,20 +12,22 @@
 </head>
 <body>
     <div class="container">
-        
+               
            
-                <form class="form-control form-control-sm" id="form1">
+                <form class="form" id="form1">
                     <label for="expamount">Choose ExpenseAmount</label>
-                    <input id="expamount" type="text" name="expamount" required>
+                    <input class="form-control form-control-sm" id="expamount" type="text" name="expamount"  required>
                     <label for="desc">Choose description</label>
-                    <input id="desc" type="text" name="desc" required>
+                    <input class="form-control form-control-sm" id="desc" type="text" name="desc"  required>
                     <label for="category">Choose category</label>
-                    <input id="category" type="text" name="category" required>
-                    <input type="submit" name="Add expense" value="Add Expense">
+                    <input class="form-control form-control-sm" id="category" type="text" name="category"  required>
+                    <br>
+                    <input class="btn btn-primary" type="submit" name="Add expense" value="Add Expense">
                 </form>
+                <br>
                 <ul id="items"></ul>
             
-        
+            
     </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 <script src="trackcrud.js"></script>    
